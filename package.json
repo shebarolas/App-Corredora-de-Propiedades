@@ -4,6 +4,7 @@
   "description": "App para Arriendo de Propiedades",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sebastian Pereira",
