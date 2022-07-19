@@ -1,6 +1,15 @@
 const { Router } = require("express");
 const Propiedad = require("../models/Propiedades");
-const { obtenerTipoPropiedades, crearPropiedad, buscarPropiedadesTitulo,obtenerPropiedadesId, obtenerPropiedades } = require("../controllers/propiedadesController");
+const { 
+    obtenerTipoPropiedades, 
+    crearPropiedad, 
+    buscarPropiedadesTitulo,
+    obtenerPropiedadesId, 
+    obtenerPropiedades, 
+    eliminarPropiedad,
+    obtenerPropiedadesUsuario,
+    obtenerDatosPropiedades
+ } = require("../controllers/propiedadesController");
 const multer = require('multer');
 
 const storage = multer.diskStorage({
@@ -27,6 +36,11 @@ router.get("/", obtenerTipoPropiedades);
 router.get("/obtener-prop", obtenerPropiedades);
 router.get("/buscar-prop/:nombreProp", buscarPropiedadesTitulo);
 router.get("/obtener-prop/:idProp", obtenerPropiedadesId);
+router.delete("/eliminar-prop/:idProp", eliminarPropiedad);
 router.post("/crear", upload.single('archivo'), crearPropiedad);
+// obtener las propiedades del usaurio
+router.get("/obtener-prop-usuario/:usuarioId", obtenerPropiedadesUsuario)
+//router.get("/obtener-prop/:usaurioId/resultados/", );
+router.get("/obtener-datos-prop/:usuarioId", obtenerDatosPropiedades);
 
 module.exports = router;

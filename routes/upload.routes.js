@@ -19,20 +19,26 @@ const upload = multer({
     storage: storage
 });
 
-routes.post('/upload', upload.single('archivo'), (req, res) => {
+routes.post('/upload', upload.single('archivo'), async (req, res) => {
     console.log(req.body);
-    if (!req.file) {
-        console.log("No file received");
-        return res.send({
-          success: false
-        });
-    
-    } else {
-        console.log('file received');
-        return res.send({
-          success: true
-        });
-    }
+    console.log(req.file);
+    // try {
+    //     if (!req.file) {
+    //         return res.status(400).send({ message: "Error al guardar imagen" })
+        
+    //     } else {
+    //         const newImage = new Imagen({
+    //             path: req.file.filename,
+    //             idPropiedades: propiedadSaved.idPropiedades
+    //         });
+    //         await newImage.save();
+    //         return res.status(200).send({ message: 'Propiedad e Imagen Creada'});
+    //     }
+
+    // }catch (err) {
+    //     return res.status(400).send({ message: "Error al guardar imagen" })
+    // }
+    return res.status(200).send("hola");
 });
 
 module.exports = routes;
